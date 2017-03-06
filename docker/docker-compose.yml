@@ -1,0 +1,63 @@
+version: '2'
+
+services:
+
+#  weather.www:
+#    restart: always
+#    build: www
+#    container_name: weather.www
+#    depends_on:
+#       - weather.wildfly
+#    expose:
+#      - "10080"
+#      - "10443"
+#    ports:
+#      - "10080:80"
+#      - "10443:443"
+#    volumes:
+#      - ./www/apache2/sites-enabled:/etc/apache2/sites-enabled
+#      - ./www/apache2/log:/usr/local/apache2/log
+#      - ./www/apache2/certs:/etc/apache2/certs
+#      - ./www/webroot:/var/www/weatherFrontend/
+   # link fuer connect zu wildfly
+
+  weather.postgres:
+    restart: always
+    build: postgres
+    container_name: weather.postgres
+    image: weather/postgres
+    expose:
+      - "15432"
+    ports:
+      - "15432:5432"
+    volumes:
+      - ./postgres/config/9.6:/etc/postgresql/9.6
+      - ./postgres/data:/etc/postgresql/9.6/data
+    environment:
+      POSTGRES_USER: 'weather'
+      PGDATA: /var/lib/postgresql/9.6/main
+      POSTGRES_DB: 'weather'
+
+  weather.wildfly:
+    restart: always
+    build: wildfly
+    container_name: weather.wildfly
+    image: weather/wildfly
+#    depends_on:
+#      - weather.postgres
+    expose:
+      - "18080"
+      - "19990"
+    ports:
+      - "18080:8080"
+      - "19990:9990"
+#    volumes:
+#      - ./wildfly/bin:/opt/jboss/bin
+#      - ./wildfly/configuration:/opt/jboss/wildfly
+#      - ./wildfly/deployment:/opt/jboss/wildfly
+#      - ./wildfly/log:/opt/jboss/wildfly
+#      - ./wildfly/modules:/opt/jboss/wildfly
+
+volumes:
+  postgres:
+    driver: local

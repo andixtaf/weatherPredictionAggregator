@@ -4,14 +4,12 @@ apply plugin: "info.solidsoft.pitest"
 // code coverage1
 apply plugin: 'jacoco'
 
-
-description "The best WeatherPredicter Project"
+description "Determine who is the best WeatherPredictor"
+war.archiveName "weather.war"
 
 version = '1.0'
 
 def defaultEncoding = 'UTF-8'
-
-war.archiveName "weather.war"
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -19,8 +17,6 @@ targetCompatibility = 1.8
 repositories {
     mavenCentral()
     mavenLocal()
-    maven { url 'http://repo1.maven.org/maven2' }
-    maven { url 'http://repository.jboss.org/nexus/content/groups/public' }
 }
 
 dependencies {

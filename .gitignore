@@ -4,14 +4,7 @@
 /module/.gradle
 /module.iml
 
-Würde it.weather/.gradle/ löschen
-Würde it.weather/build.gradle löschen
-Würde it.weather/build/ löschen
-Würde it.weather/gradle/ löschen
-Würde it.weather/gradlew löschen
-Würde it.weather/gradlew.bat löschen
-Würde it.weather/settings.gradle löschen
-Würde out/artifacts/it.weather/exploded/weather.war/WEB-INF/ löschen
+
 /gradlew
 /gradlew.bat
 /.gradle/
