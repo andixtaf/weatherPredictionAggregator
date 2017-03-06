@@ -16,3 +16,6 @@ Würde out/artifacts/it.weather/exploded/weather.war/WEB-INF/ löschen
 /gradlew.bat
 /.gradle/
 /build/
+!/out/
+/gradle/
+/out/

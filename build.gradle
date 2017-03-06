@@ -1,0 +1,79 @@
+apply plugin: 'war'
+apply plugin: "info.solidsoft.pitest"
+
+// code coverage1
+apply plugin: 'jacoco'
+
+
+description "The best WeatherPredicter Project"
+
+version = '1.0'
+
+def defaultEncoding = 'UTF-8'
+
+war.archiveName "weather.war"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    maven { url 'http://repo1.maven.org/maven2' }
+    maven { url 'http://repository.jboss.org/nexus/content/groups/public' }
+}
+
+dependencies {
+    providedCompile "jboss:jboss-annotations-ejb3:4.2.+"
+
+    providedCompile "org.jboss.resteasy:resteasy-jaxrs:3.0.+"
+    providedCompile "org.jboss.resteasy:resteasy-jaxrs-war:2.3.+"
+
+    providedCompile "org.jboss.logging:jboss-logging:3.3.+"
+
+    providedCompile "org.jboss.spec.javax.ejb:jboss-ejb-api_3.2_spec:1.0.+"
+
+
+    testCompile "junit:junit:4.+"
+    testCompile "org.hamcrest:hamcrest-all:1.+"
+
+}
+
+task getHomeDir << {
+    println gradle.gradleHomeDir
+}
+
+tasks.withType(Test) {
+    scanForTestClasses = false
+    include "**/*Test.class" // whatever Ant pattern matches your test class files
+}
+
+test.testLogging.showStandardStreams = true
+
+
+buildscript {
+    repositories {
+        mavenCentral()
+        //Needed only for SNAPSHOT versions
+        //maven { url "http://oss.sonatype.org/content/repositories/snapshots/" }
+    }
+    dependencies {
+        classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.1.10'
+    }
+}
+
+pitest {
+    targetClasses = ['com.logicsale.common.util.Hashmaker',
+                     'com.logicsale.common.util.LogicsaleMoney',
+                     'com.logicsale.platform.idealo.mapper.IdealoMapper',
+                     'com.logicsale.platform.idealo.api.response.IdealoResponseParser',
+                     'com.logicsale.platform.idealo.mapper.IdealoMapper',
+                     'com.logicsale.customer.strategy.oneclickpricing.CustomerOneClickPricing', 'com.logicsale.customer.category.CategoryMapper']  //by default "${project.group}.*"
+
+
+    targetTests = ['com.logicsale.*']
+    pitestVersion = "1.1.0"
+    threads = 4
+    outputFormats = ['XML', 'HTML']
+    excludedMethods = ['hasCode', 'equals']
+}
