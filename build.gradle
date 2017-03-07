@@ -58,15 +58,10 @@ buildscript {
 }
 
 pitest {
-    targetClasses = ['com.logicsale.common.util.Hashmaker',
-                     'com.logicsale.common.util.LogicsaleMoney',
-                     'com.logicsale.platform.idealo.mapper.IdealoMapper',
-                     'com.logicsale.platform.idealo.api.response.IdealoResponseParser',
-                     'com.logicsale.platform.idealo.mapper.IdealoMapper',
-                     'com.logicsale.customer.strategy.oneclickpricing.CustomerOneClickPricing', 'com.logicsale.customer.category.CategoryMapper']  //by default "${project.group}.*"
+    targetClasses = ['com.weather']  //by default "${project.group}.*"
 
 
-    targetTests = ['com.logicsale.*']
+    targetTests = ['com.weather.*']
     pitestVersion = "1.1.0"
     threads = 4
     outputFormats = ['XML', 'HTML']
