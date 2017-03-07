@@ -24,7 +24,7 @@ public class MonitoringREST
 	@Path("/")
 	public Response getSingle()
 	{
-		logger.error("monitoring required");
+		logger.info("monitoring required");
 		return Response.ok("Everything ok").build();
 	}
 }

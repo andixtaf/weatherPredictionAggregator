@@ -41,7 +41,7 @@ dropdb --username=weather --host=weather.postgres --if-exists weather &&
 createdb --username=weather --host=weather.postgres weather &&
 psql --username=weather --host=weather.postgres < $POSTGRESQL_DATA_DIR/schema.sql &&
 psql --username=weather --host=weather.postgres < $POSTGRESQL_DATA_DIR/allAlter.sql &&
-psql --username=weather --host=weather.test.postgres < $POSTGRESQL_DATA_DIR/allData.sql
+psql --username=weather --host=weather.postgres < $POSTGRESQL_DATA_DIR/allData.sql
 
 
 /bin/bash -c "trap : TERM INT; sleep infinity & wait"

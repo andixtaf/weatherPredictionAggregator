@@ -9,6 +9,5 @@
 /gradlew.bat
 /.gradle/
 /build/
-!/out/
 /gradle/
 /out/

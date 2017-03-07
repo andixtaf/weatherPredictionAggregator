@@ -43,20 +43,16 @@ services:
     build: wildfly
     container_name: weather.wildfly
     image: weather/wildfly
-#    depends_on:
-#      - weather.postgres
+    depends_on:
+      - weather.postgres
     expose:
       - "18080"
       - "19990"
     ports:
       - "18080:8080"
       - "19990:9990"
-#    volumes:
-#      - ./wildfly/bin:/opt/jboss/bin
-#      - ./wildfly/configuration:/opt/jboss/wildfly
-#      - ./wildfly/deployment:/opt/jboss/wildfly
-#      - ./wildfly/log:/opt/jboss/wildfly
-#      - ./wildfly/modules:/opt/jboss/wildfly
+    volumes:
+      - ./wildfly/wildflySource:/opt/jboss/wildfly
 
 volumes:
   postgres:
