@@ -1,6 +1,7 @@
 FROM debian:jessie
 
 RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main" > /etc/apt/sources.list.d/pgdg.list
+RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main" > /etc/apt/sources.list.d/pgdg.list
 
 ADD keys /tmp/
 RUN apt-key add /tmp/keys
@@ -8,7 +9,7 @@ RUN apt-key add /tmp/keys
 RUN apt-get -y update
 RUN apt-get -y upgrade
 
-RUN apt-get --no-install-recommends -y install locales apt-utils sudo
+RUN apt-get --no-install-recommends -y install locales apt-utils sudo postgresql-client-9.6 postgresql-client-common
 
 RUN localedef -i de_DE -c -f UTF-8 -A /usr/share/locale/locale.alias de_DE.UTF-8
 ENV LANG de_DE.utf8
