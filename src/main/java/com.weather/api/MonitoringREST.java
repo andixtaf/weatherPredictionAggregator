@@ -1,4 +1,4 @@
-package com.weather;
+package com.weather.api;
 
 import org.jboss.logging.Logger;
 

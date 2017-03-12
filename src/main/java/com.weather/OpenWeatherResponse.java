@@ -6,8 +6,10 @@ package com.weather;
 public class OpenWeatherResponse
 {
 
+	private String weatherStationName;
 	private Coordinate coordinate;
 	private WeatherData weatherData;
+	private Wind wind;
 
 	public void setCoordinate(Coordinate coordinate)
 	{
@@ -27,5 +29,25 @@ public class OpenWeatherResponse
 	public WeatherData getWeatherData()
 	{
 		return weatherData;
+	}
+
+	public void setWind(Wind wind)
+	{
+		this.wind = wind;
+	}
+
+	public Wind getWind()
+	{
+		return wind;
+	}
+
+	public void setWeatherStationName(String name)
+	{
+		weatherStationName = name;
+	}
+
+	public String getWeatherStationName()
+	{
+		return weatherStationName;
 	}
 }
